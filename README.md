@@ -41,8 +41,6 @@ Finally start your docker service:
 
 ## Compiling Theme Assets
 
-A (newer) NodeJS, NPM, yarn and grunt are required.
-
 It compiles:
 
   * sass, scss ans less (with autoprefixer) to css
