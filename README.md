@@ -7,6 +7,7 @@ Featured services are:
   * PHP 7.2
   * Apache 2
   * MariaDB (latest)
+  * NodeJS for compiling theme assets
   * mailhog for catching mails (latest)
 
 ## Docker Services
@@ -40,20 +41,19 @@ Finally start your docker service:
 
 ## Compiling Theme Assets
 
-A (newer) NodeJS + npm are required.
+A (newer) NodeJS, NPM, yarn and grunt are required.
 
 It compiles:
 
   * sass, scss ans less (with autoprefixer) to css
   * coffee and/or es6 to js
 
-### Initial Installation
+### Setup
+
+Only required initially if a node-module has changed / needs to be updated:
 
 ```sh
-  $ npm install .
-  $ npm install -g grunt-cli # if not already installed
-  $ npm install -g yarn # if not already installed
-  $ yarn add --dev grunt-babel @babel/core @babel/preset-env
+  $ docker-compose run nodejs npm install .
 ```
 
 ### Compiling
@@ -61,13 +61,13 @@ It compiles:
 To compile once:
 
 ```sh
-  $ grunt
+  $ docker-compose run nodejs grunt
 ```
 
 or watch for change and compile:
 
 ```sh
-  $ grunt watch
+  $ docker-compose run nodejs grunt watch
 ```
 
 An example folder structure for a theme for the given grunt file:

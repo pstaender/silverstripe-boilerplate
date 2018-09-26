@@ -17,6 +17,10 @@ services:
       - ./www:/var/www/html
     depends_on:
       - db
+  nodejs:
+    build: ./nodejs
+    volumes:
+      - ./:/app
   mail:
     image: mailhog/mailhog
     ports:
