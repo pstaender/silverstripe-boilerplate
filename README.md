@@ -1,6 +1,6 @@
 # SilverStripe 4.x Boilerplate
 
-The setup is an (opioniated) example in docker (compose), to orchestrate the LAMP stack on whatever OS you're working with.
+The setup is an (opioniated) example in docker (compose), to orchestrate the LAMP stack on whatever OS you're working on.
 
 Featured services are:
 
@@ -33,10 +33,34 @@ Have a look at `docker-compose.yml`, `php/apache.conf` and `php/php.ini` and opt
   $ docker-compose run php sake /dev/build flush=all
 ```
 
+Eventually run `docker-compose run php sake /dev/build flush=all` again; sometimes a SilverStripe error occures because of the (yet) missing database. 
+
 Finally start your docker service:
 
 ```sh
   $ docker-compose up
+```
+
+Your SilverStripe site should now be available on `http://localhost:8080`. Ensure that there is no other service running on port 8080, otherwise docker will quit with an approiate error message.
+
+## Emails in Development
+
+To receive email in your development environment, `mailhog` is installed and reachable on `http://localhost:8025`. Just add these lines tou your config:
+
+```yaml
+---
+Name: myemailconfig
+After:
+  - '#emailconfig'
+Only:
+  environment: 'dev' 
+---
+SilverStripe\Core\Injector\Injector:
+  Swift_Transport:
+    class: Swift_SmtpTransport
+    properties:
+      Host: mail
+      Port: 1025
 ```
 
 ## Compiling Theme Assets
