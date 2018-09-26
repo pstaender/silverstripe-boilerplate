@@ -43,9 +43,9 @@ Finally start your docker service:
 
 Your SilverStripe site should now be available on `http://localhost:8080`. Ensure that there is no other service running on port 8080, otherwise docker will quit with an approiate error message.
 
-## Emails in Development
+## Emails
 
-To receive email in your development environment, `mailhog` is installed and reachable on `http://localhost:8025`. Just add these lines tou your config:
+To catch all sended emails in your development environment, `mailhog` is used. Just add these lines to your project config:
 
 ```yaml
 ---
@@ -62,6 +62,8 @@ SilverStripe\Core\Injector\Injector:
       Host: mail
       Port: 1025
 ```
+
+You can find the mailhog interface on `http://localhost:8025`.
 
 ## Compiling Theme Assets
 
