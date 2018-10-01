@@ -76,12 +76,23 @@ module.exports = function (grunt) {
     },
     watch: {
       assets: {
-        files: [`${themeDir}/scss/*.scss`, `${themeDir}/javascript/*.coffee`],
-        tasks: ['sass', 'autoprefixer', 'coffee:compile', 'babel']
+        files: [`${themeDir}/scss/*.scss`, `${themeDir}/coffee/*.coffee`, `${themeDir}/es6/*.es6`],
+        tasks: [
+          'sass',
+          'autoprefixer',
+          'coffee:compile',
+          //'babel'
+        ]
       }
     },
   });
 
-  grunt.registerTask('default', ['less', 'sass', 'autoprefixer', 'coffee:compile', 'babel']);
+  grunt.registerTask('default', [
+    'less',
+    'sass',
+    'autoprefixer',
+    'coffee:compile',
+    //'babel'
+  ]);
 
 };
