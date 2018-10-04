@@ -5,10 +5,11 @@ The setup is an (opioniated) example in docker (compose), to orchestrate the LAM
 Featured services are:
 
   * PHP 7.2
-  * Apache 2
-  * MariaDB (latest)
-  * NodeJS for compiling theme assets
-  * mailhog for catching mails (latest)
+  * Caddy webserver
+  * Optional:
+    * MariaDB
+    * NodeJS for compiling theme assets
+    * mailhog for catching mails
 
 ## Docker Services
 

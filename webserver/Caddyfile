@@ -1,0 +1,42 @@
+(defaults) {
+  limits 128mb
+}
+
+(anonymous-logging) {
+  log stdout {
+    ipmask 255.255.0.0 ffff:ffff:ffff:ff00::
+  }
+}
+
+(silverstripe-rewrite) {
+	root /var/www/html/public
+  gzip
+  fastcgi / php:9000 php
+  rewrite {
+    if {path} not_match ^\/(assets\/|resources\/|.env|vendor\/|composer\.(json|lock)|(error|silverstripe|debug)\.log|silverstripe-cache\/)
+    to {path} {path}/ /silverstripe.php?url={uri}
+  }
+}
+
+(assets-folder) {
+  root /var/www/assets
+  header / Cache-Control "max-age=86400"
+  status 403 {
+    /.protected
+    /error.+?*\.html
+  }
+  gzip
+}
+
+localhost {
+  import defaults
+  import anonymous-logging
+  import silverstripe-rewrite
+  header /resources Cache-Control "max-age=86400"
+  root /var/www/html/public
+}
+
+localhost/assets/ {
+  import defaults
+  import assets-folder
+}

@@ -1,2 +1,8 @@
 /node_modules/
 /database/
+/assets/
+/www/public/resources
+/www/vendor
+/www/silverstripe-cache/
+/www/.env
+/www/resources/

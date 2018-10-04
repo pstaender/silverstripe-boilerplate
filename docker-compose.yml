@@ -9,12 +9,20 @@ services:
       - ./database:/var/lib/mysql
     ports:
       - "3320:3306"
-  php:
-    build: ./php
+  web:
+    build: ./webserver
     ports:
-      - "8080:80"
+      - "8080:2015"
     volumes:
       - ./www:/var/www/html
+      - ./assets:/var/www/assets
+  php:
+    build: ./php
+    volumes:
+      - ./www:/var/www/html
+      - ./assets:/var/www/assets
+    environment:
+      - ASSETS_PATH=/var/www/assets
     depends_on:
       - db
   nodejs:
