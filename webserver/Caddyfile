@@ -9,12 +9,14 @@
 }
 
 (silverstripe-rewrite) {
-	root /var/www/html/public
   gzip
   fastcgi / php:9000 php
+  status 403 {
+    ^\/(.env|vendor\/|composer\.(json|lock)|(error|silverstripe|debug)\.log|silverstripe-cache\/)
+  }
   rewrite {
-    if {path} not_match ^\/(assets\/|resources\/|.env|vendor\/|composer\.(json|lock)|(error|silverstripe|debug)\.log|silverstripe-cache\/)
-    to {path} {path}/ /silverstripe.php?url={uri}
+    if {path} not_match ^\/(assets|resources)\/
+    to {path} {path}/ /index.php?url={uri}
   }
 }
 
@@ -31,10 +33,11 @@
 localhost {
   import defaults
   import anonymous-logging
-  import silverstripe-rewrite
   header /resources Cache-Control "max-age=86400"
   root /var/www/html/public
+  import silverstripe-rewrite
 }
+  
 
 localhost/assets/ {
   import defaults

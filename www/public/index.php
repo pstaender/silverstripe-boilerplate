@@ -5,6 +5,10 @@ use SilverStripe\Control\HTTPRequestBuilder;
 use SilverStripe\Core\CoreKernel;
 use SilverStripe\Core\Startup\ErrorControlChainMiddleware;
 
+if (getenv('ASSETS_PATH')) {
+    define('ASSETS_PATH', getenv('ASSETS_PATH'));
+}
+
 // Find autoload.php
 if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     require __DIR__ . '/../vendor/autoload.php';

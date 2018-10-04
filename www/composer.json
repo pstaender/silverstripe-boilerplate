@@ -30,6 +30,11 @@
       "public-files-installed": [
           "silverstripe.php",
           "index.php"
+      ],
+      "expose": [
+        "themes/mytheme/css",
+        "themes/mytheme/javascript",
+        "themes/mytheme/images"
       ]
   },
   "config": {
