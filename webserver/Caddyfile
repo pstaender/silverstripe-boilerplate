@@ -36,9 +36,10 @@ localhost {
   root /var/www/html/public
   import silverstripe-rewrite
 }
-  
 
 localhost/assets/ {
   import defaults
+  import anonymous-logging
+  root /var/www/html/public/assets
   import assets-folder
 }
