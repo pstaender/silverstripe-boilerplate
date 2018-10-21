@@ -21,7 +21,6 @@
 }
 
 (assets-folder) {
-  root /var/www/assets
   header / Cache-Control "max-age=86400"
   status 403 {
     /.protected
