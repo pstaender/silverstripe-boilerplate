@@ -7,8 +7,9 @@ services:
       - MYSQL_DATABASE=SS_project
     volumes:
       - ./database:/var/lib/mysql
-    ports:
-      - "3320:3306"
+    # uncomment if you want to work with mysql locally in your dev environment
+    # ports:
+    #  - "3306:3306"
   php:
     build: ./php
     ports:
